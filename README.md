@@ -67,25 +67,34 @@ npm run dev
 
 Base URL: `http://localhost:3333`
 
-- POST `/courses`
-  - Cria um curso
-  - Body (JSON):
-    ```json
-    { "title": "Curso de Docker" }
-    ```
-  - Respostas:
-    - 201: `{ "courseId": "<uuid>" }`
+### Cursos
 
-- GET `/courses`
-  - Lista todos os cursos
-  - 200: `{ "courses": [{ "id": "<uuid>", "title": "..." }] }`
+**POST `/courses`**
 
-- GET `/courses/:id`
-  - Busca um curso pelo ID
-  - Parâmetros: `id` (UUID)
-  - Respostas:
-    - 200: `{ "course": { "id": "<uuid>", "title": "...", "description": "... | null" } }`
-    - 404: vazio
+Cria um novo curso.
+
+- **Body (JSON):**
+  ```json
+  { "title": "Curso de Docker", "description": "Aprenda Docker do zero." }
+  ```
+- **Respostas:**
+  - `201 Created`: `{ "courseId": "<uuid>" }`
+
+**GET `/courses`**
+
+Lista todos os cursos.
+
+- **Respostas:**
+  - `200 OK`: `{ "courses": [{ "id": "<uuid>", "title": "...", "description": "... }] }`
+
+**GET `/courses/:id`**
+
+Busca um curso específico pelo seu ID.
+
+- **Parâmetros:** `id` (UUID)
+- **Respostas:**
+  - `200 OK`: `{ "course": { "id": "<uuid>", "title": "...", "description": "... | null" } }`
+  - `404 Not Found`: Corpo da resposta vazio.
 
 Há um arquivo `requisicoes.http` com exemplos prontos (compatível com extensões de REST Client).
 
